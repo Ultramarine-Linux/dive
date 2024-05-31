@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install nim
-        run: dnf5 in nim nim-tools
+        run: dnf5 in -y nim nim-tools
 
       - name: Nimble build
         run: nimble build -y
