@@ -18,7 +18,7 @@ proc mkdir(dir: Path) =
 
 proc run(cmd: string) {.async.} =
   info "Running command: "&cmd
-  let p = startProcess("sh", args=["-c", cmd], options={poParentStreams})
+  let p = startProcess("/usr/bin/sh", args=["-c", cmd], options={poParentStreams})
   while p.running:
     await sleepAsync 10
   let rc = p.waitForExit
