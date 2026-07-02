@@ -1,4 +1,4 @@
-import std/[strutils, strformat, paths, os, dirs, files, osproc]
+
 import asyncdispatch
 import cligen, sweet
 import log, mounts
@@ -54,13 +54,13 @@ proc cp_resolv(root: Path) {.async.} =
   await run "mount -c --bind /etc/resolv.conf "&dest.string
 
 proc umount(path: string) {.async.} =
-  try: await run fmt"umount {path}"
+  try: await run fmt"umount -R {path}"
   finally: discard
 
 proc umount_all(root: string) {.async.} =
   await umount(fmt"{root}/proc") and
     umount(fmt"{root}/sys") and
-    umount(fmt"{root}/dev {root}/dev/pts") and
+    umount(fmt"{root}/dev") and
     umount(fmt"{root}/etc/resolv.conf")
 
 proc find_shell(root: Path): string =
