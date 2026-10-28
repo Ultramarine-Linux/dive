@@ -1,3 +1,4 @@
+import std/[strutils, strformat, paths, os, dirs, files, osproc]
 
 import asyncdispatch
 import cligen, sweet
